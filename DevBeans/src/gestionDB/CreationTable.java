@@ -3,12 +3,9 @@ import java.sql.*;
 
 public class CreationTable {
 	
-	static private final String login = "jnivoix";
-	static private final String mdp   = "12345";
 	
 	// JDBC driver name and database URL
 	   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	   static final String DB_URL = "jdbc:mysql://sqletud.u-pem.fr/jnivoix_db";
 	
 	   public static void main(String[] args) {
 		   Connection conn = null;
@@ -20,7 +17,7 @@ public class CreationTable {
 
 		      //STEP 3: Open a connection
 		      System.out.println("Connecting to database...");
-		      conn = DriverManager.getConnection(DB_URL,login,mdp);
+		      conn = DriverManager.getConnection(BDDGlobalVar.BDD_URL,BDDGlobalVar.BDD_LOGIN,BDDGlobalVar.BDD_PWD);
 		      
 		      System.out.println("Creating table in given database...");
 		      stmt = conn.createStatement();
@@ -32,7 +29,7 @@ public class CreationTable {
 		                   " SOLDE DECIMAL(10,2) not null , " + 
 		                   " PRIMARY KEY ( NOCOMPTE ))";
 
-		      System.out.println("Created table in given database...");
+		      System.out.println("Created table in gloginiven database...");
 		      String sql2 = "CREATE TABLE OPERATION " +
 	                   " (NOCOMPTE CHAR(4) not null, " + 
 	                   " DATE DATE not null, " +
