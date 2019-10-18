@@ -19,7 +19,7 @@ public class CreationTable {
 		      System.out.println("Connecting to database...");
 		      conn = DriverManager.getConnection(BDDGlobalVar.BDD_URL,BDDGlobalVar.BDD_LOGIN,BDDGlobalVar.BDD_PWD);
 		      
-		      System.out.println("Creating table in given database...");
+		      System.out.println("Creating table COMPTE");
 		      stmt = conn.createStatement();
 		      
 		      String sql = "CREATE TABLE COMPTE " +
@@ -29,7 +29,7 @@ public class CreationTable {
 		                   " SOLDE DECIMAL(10,2) not null , " + 
 		                   " PRIMARY KEY ( NOCOMPTE ))";
 
-		      System.out.println("Created table in gloginiven database...");
+		      System.out.println("Creating table OPERATION");
 		      String sql2 = "CREATE TABLE OPERATION " +
 	                   " (NOCOMPTE CHAR(4) not null, " + 
 	                   " DATE DATE not null, " +
@@ -40,7 +40,7 @@ public class CreationTable {
 
 	      stmt.executeUpdate(sql);
 	      stmt.executeUpdate(sql2);
-	      System.out.println("Created table in given database...");
+	      System.out.println("All tables has been succesfully created");
 		      
 		   }catch(SQLException se){
 			      //Handle errors for JDBC
