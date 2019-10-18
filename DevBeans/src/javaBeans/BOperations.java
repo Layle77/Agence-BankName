@@ -158,7 +158,7 @@ public class BOperations {
 		}		
 		catch(SQLException e) {
 			e.printStackTrace();
-			throw new TraitementException("21");
+			throw new TraitementException("22");
 		}
 
 		try {
@@ -174,8 +174,7 @@ public class BOperations {
 				case "-" : 
 					this.nouveauSolde = new BigDecimal("0").add(ancienSolde).subtract(this.valeur);
 					if(this.nouveauSolde.compareTo(BigDecimal.ZERO) < 0) {
-						System.out.println("Nouveau solde est negatif refus de l'opération de transaction");
-						return;
+						throw new TraitementException("24");
 					}
 					break;
 				}
@@ -201,8 +200,8 @@ public class BOperations {
 					try {
 						connexion.rollback();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
+						throw new TraitementException("22");
 					}
 				}
 				e.printStackTrace();			
@@ -214,6 +213,7 @@ public class BOperations {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					throw new TraitementException("22");
 				}
 			}
 	}
@@ -231,8 +231,7 @@ public class BOperations {
 		catch(SQLException e) {
 			//TODO
 			e.printStackTrace();
-			throw new Exception(e);
-			//Display values
+			throw new TraitementException("22");
 		}
 
 		try {
@@ -247,7 +246,8 @@ public class BOperations {
 				sResult.append(rs.getString("VALEUR")+" ");
 				opList.add(sResult.toString());
 			}}catch(SQLException e) {
-				e.printStackTrace();			
+				e.printStackTrace();
+				throw new TraitementException("22");
 			}finally {
 				//STEP 6: Clean-up environment
 				rs.close();
