@@ -35,7 +35,7 @@ public class BOperations {
 	}
 
 	//GETTERS---------------------------------
-
+	
 	public String getValeur() {
 		return valeur.toString();
 	}
@@ -59,7 +59,7 @@ public class BOperations {
 	public String getDateSup() {
 		return this.dateSup;
 	}
-
+	
 	public ArrayList<String> getOpList(){
 		return this.opList;
 	}
@@ -90,7 +90,8 @@ public class BOperations {
 
 		//STEP 3: Open a connection
 		try {
-			connexion = DriverManager.getConnection(BDDGlobalVar.BDD_URL,BDDGlobalVar.BDD_LOGIN,BDDGlobalVar.BDD_PWD);
+			//connexion = DriverManager.getConnection(BDDGlobalVar.BDD_URL,BDDGlobalVar.BDD_LOGIN,BDDGlobalVar.BDD_PWD);
+			connexion = DriverManager.getConnection(BDDGlobalVar.BDD_URL+BDDGlobalVar.BDD_LOGIN+BDDGlobalVar.BDD_PWD+"&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 			//Set autocommit for transactinnal connection
 			connexion.setAutoCommit(false);
 		} catch (SQLException e) {
@@ -164,7 +165,7 @@ public class BOperations {
 		try {
 			//STEP 5: Extract data from result set
 			if(rs.next()){
-				//Retrieve by column name
+					//Retrieve by column name
 				this.ancienSolde = rs.getBigDecimal("SOLDE");
 
 
@@ -200,7 +201,7 @@ public class BOperations {
 					try {
 						connexion.rollback();
 					} catch (SQLException e1) {
-						e1.printStackTrace();
+									e1.printStackTrace();
 						throw new TraitementException("22");
 					}
 				}
@@ -227,7 +228,7 @@ public class BOperations {
 		try{	
 			stmt = connexion.createStatement();
 			rs = stmt.executeQuery(sql);
-		}		
+		}								
 		catch(SQLException e) {
 			//TODO
 			e.printStackTrace();
@@ -252,7 +253,7 @@ public class BOperations {
 				//STEP 6: Clean-up environment
 				rs.close();
 				stmt.close();
-			}
+			}							
 
 	}
 
@@ -262,7 +263,7 @@ public class BOperations {
 		return "BOperations [noDeCompte=" + noDeCompte + ", nom=" + nom + ", prenom=" + prenom + ", solde=" + solde
 				+ ", connexion=" + connexion + "]";
 	}
-
-
-}
+	
+	
+}																																																														
 

@@ -12,7 +12,7 @@
   
   <servlet>
   	<servlet-name>SOperations</servlet-name>
-  	<servlet-class></servlet-class>
+  	<servlet-class>servlets.SOperations</servlet-class>
   </servlet>
   
   <servlet-mapping>
